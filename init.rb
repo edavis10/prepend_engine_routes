@@ -28,11 +28,6 @@ module PrependEngineRoutes
     end
     
     module InstanceMethods
-      def prepend_configuration_file(file)
-        self.prepended_routes ||= []
-        self.prepended_routes << file
-      end
-      
       def initialize_routing_with_prepend_engine
         configuration.prepended_route_configuration_files.each do |prepended_route_config|
           ActionController::Routing::Routes.add_configuration_file(prepended_route_config)
