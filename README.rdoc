@@ -1,0 +1,20 @@
+= Prepend Engine Routes
+
+Prepend Engine Routes is a plugin to allow Rails Engines to add their
+routes before the application routes.  This will let the Engine (and only
+that Engine) to override application routes. It does this by adding the Engines
+routing file before the application routes file.
+
+== Usage
+
+In your engine's init.rb, use the add_prepended_route_configuration_file
+method:
+
+    user_homepage_routes = File.join(File.dirname(__FILE__), *%w[config routes.rb])
+    config.add_prepended_route_configuration_file(user_homepage_routes)
+
+== References
+
+* https://rails.lighthouseapp.com/projects/8994/tickets/2592-plugin-routes-override-application-routes
+* http://robots.thoughtbot.com/post/159805560/tips-for-writing-your-own-rails-engine
+* http://railsguts.com/initialization.html
