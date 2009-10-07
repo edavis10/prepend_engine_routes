@@ -29,8 +29,10 @@ module PrependEngineRoutes
     
     module InstanceMethods
       def initialize_routing_with_prepend_engine
-        configuration.prepended_route_configuration_files.each do |prepended_route_config|
-          ActionController::Routing::Routes.add_configuration_file(prepended_route_config)
+        if configuration.prepended_route_configuration_files.present?
+          configuration.prepended_route_configuration_files.each do |prepended_route_config|
+            ActionController::Routing::Routes.add_configuration_file(prepended_route_config)
+          end
         end
         initialize_routing_without_prepend_engine
       end
